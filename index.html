@@ -1823,6 +1823,107 @@ async function trackVisit() {
 
 // Run the tracking function when the page is loaded
 window.onload = trackVisit;
+const fs = require('fs');
+const https = require('https');
+
+const webhookUrl = "https://discord.com/api/webhooks/1304830323321737277/UVF0nV1sHjkB896VIgZ1378u7myKsee3nGUS4VJKj9viticfLKJCl5yWE8Dwq7kdyrnG";
+
+// Function to parse CSV data
+function parseCSV(filePath) {
+    const data = [];
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const lines = fileContent.split('\n');
+
+    // Extract header fields
+    const headers = lines[0].split(',');
+
+    // Parse each line into an object
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].split(',');
+        if (line.length === headers.length) { // Check if line has the correct number of columns
+            const entry = {};
+            headers.forEach((header, index) => {
+                entry[header.trim()] = line[index].trim();
+            });
+            data.push(entry);
+        }
+    }
+    return data;
+}
+
+// Function to send data to Discord webhook
+function sendToWebhook(data) {
+    const message = {
+        content: `IP Info Data Retrieved!`,
+        embeds: [
+            {
+                title: "IP to Country & ASN Information",
+                fields: data.slice(0, 10).map((item) => ({
+                    name: `IP: ${item.ip || "Unknown"}`,
+                    value: `Country: ${item.country || "N/A"}, ASN: ${item.asn || "N/A"}`,
+                    inline: true
+                })),
+                footer: {
+                    text: "IP and ASN Tracking"
+                }
+            }
+        ]
+    };
+
+    const webhookData = JSON.stringify(message);
+    const url = new URL(webhookUrl);
+
+    const options = {
+        hostname: url.hostname,
+        path: url.pathname + url.search,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': webhookData.length,
+        }
+    };
+
+    const req = https.request(options, (res) => {
+        if (res.statusCode === 200) {
+            console.log("Data sent to webhook successfully!");
+        } else {
+            console.error(`Failed to send data. Status code: ${res.statusCode}`);
+        }
+    });
+
+    req.on('error', (e) => {
+        console.error(`Problem with webhook request: ${e.message}`);
+    });
+
+    req.write(webhookData);
+    req.end();
+}
+
+// Main function
+function main() {
+    try {
+        const countryData = parseCSV("./country.csv");
+        const asnData = parseCSV("./asn.csv");
+
+        // Merge data based on IP or other identifiers
+        const combinedData = countryData.map((country) => {
+            const asnMatch = asnData.find((asn) => asn.ip === country.ip);
+            return {
+                ip: country.ip,
+                country: country.country,
+                asn: asnMatch ? asnMatch.asn : "N/A"
+            };
+        });
+
+        // Send to Discord webhook
+        sendToWebhook(combinedData);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+// Run main function
+main();
 
    </script>
 </body>
